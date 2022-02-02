@@ -1,11 +1,11 @@
-import './App.css'
-
-import { Navbar } from './components';
+import './App.scss'
+import { Inicio } from './pages'
+import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <Inicio />
     </div>
   )
 }

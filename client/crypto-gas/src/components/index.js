@@ -1,4 +1,4 @@
 export { default as Loader } from './Loader';
-export { default as Footer } from './Footer';
+export { default as CoinList } from './CoinList';
 export { default as Navbar } from './Navbar';
-export { default as Input } from './Input';
+export { default as Card } from './Card';

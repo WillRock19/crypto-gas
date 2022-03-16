@@ -1,8 +1,46 @@
-import './Inicio.scss'
-import eth from '../../images//currencies/eth.svg';
+import './Inicio.scss';
+import { useEffect, useState } from 'react';
+import eth from '../../images/currencies/eth.svg';
 import { Navbar, Card } from '../../components';
+import { fetchGasFees } from '../../services/etherscan-apis';
+import gweiToEth from '../../services/crypto-math';
 
-const Inicio = () => {
+const initialPricesState = {
+  inGwei: '',
+  inEth: '',
+};
+
+function Inicio() {
+  const [safePrices, setSafePrices] = useState(initialPricesState);
+  const [proposePrices, setProposePrices] = useState(initialPricesState);
+  const [fastPrices, setFastPrices] = useState(initialPricesState);
+
+  const updatePrices = ({ SafeGasPrice, ProposeGasPrice, FastGasPrice }) => {
+    setSafePrices((previousState) => ({
+      ...previousState,
+      inGwei: SafeGasPrice,
+      inEth: gweiToEth(SafeGasPrice),
+    }));
+
+    setProposePrices((previousState) => ({
+      ...previousState,
+      inGwei: ProposeGasPrice,
+      inEth: gweiToEth(ProposeGasPrice),
+    }));
+
+    setFastPrices((previousState) => ({
+      ...previousState,
+      inGwei: FastGasPrice,
+      inEth: gweiToEth(FastGasPrice),
+    }));
+  };
+
+  useEffect(() => {
+    fetchGasFees().then((data) => {
+      updatePrices(data);
+    });
+  }, []);
+
   return (
     <div id="inicio">
       <Navbar />
@@ -17,35 +55,38 @@ const Inicio = () => {
             <div className="col-md-4">
               <Card
                 reais="180,01"
-                ethereum="0.0990"
-                gwei="180"
+                ethereum={safePrices.inEth}
+                gwei={safePrices.inGwei}
                 base="1"
                 priority="1"
                 tempoTransacao="3 mins"
                 icone="🐢"
-                prioridade="Baixa" />
+                prioridade="Baixa"
+              />
             </div>
             <div className="col-md-4">
               <Card
                 reais="180,01"
-                ethereum="0.0990"
-                gwei="180"
+                ethereum={proposePrices.inEth}
+                gwei={proposePrices.inGwei}
                 base="1"
                 priority="1"
                 tempoTransacao="3 mins"
                 icone="🐧"
-                prioridade="Média" />
+                prioridade="Média"
+              />
             </div>
             <div className="col-md-4">
               <Card
                 reais="180,01"
-                ethereum="0.0990"
-                gwei="180"
+                ethereum={fastPrices.inEth}
+                gwei={fastPrices.inGwei}
                 base="1"
                 priority="1"
                 tempoTransacao="3 mins"
                 icone="🐇"
-                prioridade="Alta" />
+                prioridade="Alta"
+              />
             </div>
           </div>
         </div>
@@ -55,4 +96,3 @@ const Inicio = () => {
 }
 
 export default Inicio;
-

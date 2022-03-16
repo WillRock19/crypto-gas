@@ -1,5 +1,5 @@
-import './App.scss'
-import { Inicio } from './pages'
+import './App.scss';
+import { Inicio } from './pages';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <Inicio />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

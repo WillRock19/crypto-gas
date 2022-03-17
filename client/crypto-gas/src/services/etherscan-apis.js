@@ -1,4 +1,4 @@
-const baseUrl = 'https://api.etherscan.io';
+const baseUrl = import.meta.env.VITE_ETHERSCAN_BASE_URI;
 
 const getDataFromUrl = (urlToFetch) => fetch(urlToFetch)
   .then((response) => {

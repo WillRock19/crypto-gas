@@ -1,15 +1,16 @@
-import "./Inicio.scss";
-import { useEffect, useState } from "react";
-import eth from "../../images/currencies/eth.svg";
-import { Navbar, Card } from "../../components";
-import { fetchGasFees } from "../../services/etherscan-apis";
-import { obterCotacaoDolarHoje } from "../../services/financial-apis";
+import './Inicio.scss';
+import { useEffect, useState } from 'react';
+import eth from '../../images/currencies/eth.svg';
+import { Navbar, Card } from '../../components';
+import { fetchGasFees } from '../../services/etherscan-apis';
+import obterCotacaoDolarHoje from '../../services/financial-apis';
+import ehtereumInUsd from '../../services/web3';
 
-import gweiToEth from "../../services/crypto-math";
+import gweiToEth from '../../services/crypto-math';
 
 const initialPricesState = {
-  inGwei: "",
-  inEth: "",
+  inGwei: '',
+  inEth: '',
 };
 
 const etherCurrentPriceInDolars = 100.0;

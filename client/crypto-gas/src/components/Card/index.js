@@ -1,4 +1,4 @@
 import './Card.scss';
-import Card from './Card.jsx';
+import Card from './Card';
 
 export default Card;

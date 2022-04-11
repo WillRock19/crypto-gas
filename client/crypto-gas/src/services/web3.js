@@ -1,17 +1,14 @@
 import Web3 from 'web3';
 import contracts from '../contractsABIs/contracts';
 
-const infuraEndpoint = import.meta.env.VITE_INFURA_ENDPOINT_URL;
+const infuraEndpoint = import.meta.env.VITE_ETHEREUM_NETWORK_ENDPOINT;
+const web3 = new Web3(infuraEndpoint);
 
-console.log(infuraEndpoint);
+const obterEthEmDolar = () => {
+  const contractData = contracts.find((contract) => contract.name === 'eth-usd-2').data;
+  const contract = new web3.eth.Contract(contractData.ABI, contractData.address);
 
-const web3Object = new Web3(infuraEndpoint);
-
-const ethereumInUsd = () => {
-  const contractData = contracts.find((contract) => contract.name === 'eth-usd').data;
-  const contract = web3Object.eth.Contract(contractData.ABI, contractData.address);
-
-  console.log(contract.methods);
+  return contract.methods.latestAnswer().call();
 };
 
-export default ethereumInUsd;
+export default obterEthEmDolar;

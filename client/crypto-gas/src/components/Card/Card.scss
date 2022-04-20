@@ -1,5 +1,16 @@
 #card {
+  .card-header{
+    span.icone-prioridade{
+      margin-right: 10px;
+    }
+  }
+
   .card-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-footer{
     display: flex;
     flex-direction: column;
   }

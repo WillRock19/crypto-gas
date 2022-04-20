@@ -1,4 +1,4 @@
 import './Inicio.scss';
-import Inicio from './Inicio.jsx';
+import Inicio from './Inicio';
 
 export default Inicio;

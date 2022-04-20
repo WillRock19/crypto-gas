@@ -4,7 +4,18 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <!--The next two <script> lines HAD to be added so web3.js could work with vite.js. More about this on vite.config.js file-->
+    <script>window.global = window;</script>
+    <script type="module">
+      import process from "process";
+      import { Buffer } from "buffer";
+      import EventEmitter from "events";
+
+      window.Buffer = Buffer;
+      window.process = process;
+      window.EventEmitter = EventEmitter;
+  </script>
+  <title>Vite App</title>
   </head>
   <body>
     <div id="root"></div>
